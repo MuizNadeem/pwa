@@ -1,0 +1,19 @@
+{
+    "short_name": "Apne Truck",
+    "name": "Apne Truck",
+    "start_url": "/",
+
+    "theme_color": "#2962FF",
+    "background_color": "#2962FF",
+
+    "display": "standalone",
+    "orientation": "portrait",
+
+    "icons": [{
+        "src": "/assets/icons/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+
+
+}
