@@ -1,0 +1,27 @@
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.example-icon {
+    padding: 0 14px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.toggle-btn span {
+    display: block;
+    width: 27px;
+    height: 4px;
+    background: #ffffff;
+    margin: 5px 0px;
+}
+
+mat-list mat-list-item {
+    padding: 20px;
+}
