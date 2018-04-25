@@ -1,1 +1,18 @@
-home
+<div class="container">
+    <div class="jumbotron">
+
+        <div *ngIf="authService.isLoggedIn()">
+
+            <h2>Hi {{authService.data.displayName}}, Welcome to APNE TRUCK</h2>
+            You should see this only if you are logged in!
+
+            <a class="btn btn-lg btn-primary" href="" role="button" (click)="authService.logout()">Logout</a>
+        </div>
+
+        <!-- <p *ngIf="!authService.isLoggedIn()">
+
+            <a class="btn btn-lg btn-primary" href="" role="button" (click)="authService.logout()">Login</a>
+        </p> -->
+
+    </div>
+</div>

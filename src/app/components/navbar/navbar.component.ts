@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSidenav} from '@angular/material/sidenav';
 import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material';
+
+// import { AngularFireAuth } from 'angularfire2/auth';
+// import * as firebase from 'firebase/app';
 
 
 @Component({
@@ -12,7 +14,16 @@ import {MatIconRegistry} from '@angular/material';
 
 export class NavbarComponent {
 
-  constructor(){}
+  constructor(
+    //public afAuth: AngularFireAuth
+  ) {
+  }
+  // login() {
+  //   this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  // }
+  // logout() {
+  //   this.afAuth.auth.signOut();
+  // }
   
   
   ngOnInit(){
