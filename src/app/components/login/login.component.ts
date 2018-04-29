@@ -1,7 +1,8 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormsModule }   from '@angular/forms';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {FirebaseUISignInSuccess} from 'firebaseui-angular';
 
 
 
@@ -12,34 +13,19 @@ import { FormsModule }   from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  constructor(public authService: AuthService, private router: Router) { }
 
+  constructor(private afAuth: AngularFireAuth) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.afAuth.authState.subscribe(d => console.log(d));
   }
 
-  signInWithGoogle() {
-    this.authService.signInWithGoogle()
-    .then((res) => {
-        this.router.navigate([''])
-      })
-    .catch((err) => console.log(err));
+  logout() {
+    this.afAuth.auth.signOut();
   }
- 
-  signInWithFacebook() {
-    this.authService.signInWithFacebook()
-    .then((res) => { 
-        this.router.navigate([''])
-      })
-    .catch((err) => console.log(err));
+
+  successCallback(data: FirebaseUISignInSuccess) {
+    console.log('successCallback', data);
   }
-  
-  login(){
-    this.authService.signInWithGoogle().then((data) => {
-      this.router.navigate(['']);
-    } )
-    
-}
 
 }

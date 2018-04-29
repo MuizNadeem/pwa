@@ -1,8 +1,8 @@
 import { AuthGuard } from './services/auth-guard.service';
 import { ROUTES } from './app.routes';
-import { AuthService } from './services/auth.service';
+import { AuthService , AuthConfig } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouterModule, Routes, PreloadAllModules } from '@angular/router';
+import {RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,18 +19,8 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FirebaseUIModule } from 'firebaseui-angular';
 import { FormsModule } from '@angular/forms';
-
-
-
-const appRoutes : Routes = [
-  { path:'' , component: HomeComponent },
-  { path:'register' , component: RegisterComponent },
-  { path:'login' , component: LoginComponent },
-  { path:'profile' , component: ProfileComponent },
-  { path:'dashboard' , component: DashboardComponent }
-
-]
 
 
 @NgModule({
@@ -48,13 +38,11 @@ const appRoutes : Routes = [
     MaterialModule,
     FormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(ROUTES,{
-      useHash: Boolean(history.pushState) === false,
-      preloadingStrategy: PreloadAllModules
-    }),
+    RouterModule.forRoot(ROUTES),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(AuthConfig)
 
   ],
   providers: [AuthService, AuthGuard],
@@ -62,3 +50,4 @@ const appRoutes : Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+  
