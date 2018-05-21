@@ -1,0 +1,36 @@
+<form #truckForm="ngForm" (ngSubmit)="onSubmit(truckForm)">
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="truckService.selectedTruck.$key">
+    <div class="form-group">
+        <label>Registeration Number</label>
+        <input class="form-control" name="truckNo" #truckNo="ngModel" [(ngModel)]="truckService.selectedTruck.truckNo" placeholder="Truck Registeration Number" required>
+    </div>
+
+    <div class="form-group">
+        <label>Truck Type </label>
+        <input class="form-control" name="truckType" #truckType="ngModel" [(ngModel)]="truckService.selectedTruck.truckType" placeholder="12 Wheeler" required>
+    </div>
+    <div class="form-group">
+        <label>Truck Alias </label>
+        <input class="form-control" name="truckAlias" #truckAlias="ngModel" [(ngModel)]="truckService.selectedTruck.truckAlias" placeholder="Blue Truck">
+    </div>
+    <div class="form-group">
+        <label>Insurance Expires On</label>
+        <input class="form-control" name="insuranceExpiresOn" #insuranceExpiresOn="ngModel" [(ngModel)]="truckService.selectedTruck.insuranceExpiresOn" placeholder="31/12/2018">
+    </div>
+    <div class="form-group">
+        <label>Fitness Expires On</label>
+        <input class="form-control" name="fitnessExpiresOn" #fitnessExpiresOn="ngModel" [(ngModel)]="truckService.selectedTruck.fitnessExpiresOn" placeholder="31/12/2018">
+    </div>
+    <div class="form-group">
+        <label>Permit</label>
+        <input class="form-control" name="permit" #permit="ngModel" [(ngModel)]="truckService.selectedTruck.permit">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-default" type="submit" [disabled]="!truckForm.valid">
+      <i class="fa fa-floppy-o"></i>
+       Submit</button>
+        <button class="btn btn-default" type="button" (click)="resetForm(truckForm)">
+      <i class="fa fa-repeat"></i>
+       Reset</button>
+    </div>
+</form>

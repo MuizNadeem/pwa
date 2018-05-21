@@ -27,7 +27,7 @@ export class AuthService {
         if (user) {
           this.userDetails = user;
           this.data = user;
-          this.router.navigate(['/home'])
+          //this.router.navigate(['/home'])
           console.log(this.userDetails);
         }
         else {
@@ -62,7 +62,7 @@ const PhoneCustomConfig: AuthProviderWithCustomConfig = {
     defaultCountry: 'IN',
     recaptchaParameters: {
       type: 'image', // 'audio'
-      size: 'normal', // 'invisible' or 'compact'
+      size: 'invisible', // 'invisible' or 'compact'
       badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
     }
   }

@@ -1,6 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatSidenav} from '@angular/material/sidenav';
-import {DomSanitizer} from '@angular/platform-browser';
+import { MatSidenav } from '@angular/material/sidenav';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
+
 
 // import { AngularFireAuth } from 'angularfire2/auth';
 // import * as firebase from 'firebase/app';
@@ -14,19 +17,17 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 export class NavbarComponent {
 
-  constructor(
-    //public afAuth: AngularFireAuth
-  ) {
+  constructor(public authService: AuthService, private router: Router) { }
+
+  ngOnInit() {
+
   }
-  // login() {
-  //   this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  // }
-  // logout() {
-  //   this.afAuth.auth.signOut();
-  // }
-  
-  
-  ngOnInit(){
+  logout() {
+    const answer: boolean = confirm("Press OK to confirm logging out!");
+    if (answer) {
+      this.authService.logout();
+      this.router.navigate(['login']);
+    }
 
   }
 

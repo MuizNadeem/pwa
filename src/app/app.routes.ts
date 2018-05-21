@@ -1,3 +1,4 @@
+import { MapsComponent } from './components/maps/maps.component';
 import { Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,13 +11,14 @@ import{ AuthGuard} from './services/auth-guard.service';
 
     
 export const ROUTES: Routes = [
-        { path:'' , canActivate: [AuthGuard], component: HomeComponent },
+        { path:'' , pathMatch:'full', redirectTo:'home' },
         { path:'home' , canActivate: [AuthGuard], component: HomeComponent },
-         
+        { path:'maps' , component: MapsComponent },
         { path:'register' , component: RegisterComponent },
         { path:'login' , component: LoginComponent },
         { path:'profile' , canActivate: [AuthGuard], component: ProfileComponent },
-        { path:'dashboard', canActivate: [AuthGuard] , component: DashboardComponent }
+        { path:'dashboard', canActivate: [AuthGuard] , component: DashboardComponent },
+        
       
       ] ;
   

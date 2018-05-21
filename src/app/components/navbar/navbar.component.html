@@ -1,48 +1,64 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav>
-        <div id="closebtn"> <a (click)="sidenav.toggle()"><span style="font-size: 36px; ">&times;</span></a></div>
 
+    <mat-sidenav class="sidenav" #sidenav>
+        <mat-list>
+            <mat-nav-list>
+                <!-- Close SideNav on button click-->
+                <a (click)="sidenav.close()" id="closebtn" mat-list-item><span>&times;</span></a>
 
-        <mat-list (click)="sidenav.toggle()">
+                <!-- Close SideNav after link selection-->
+                <div (click)="sidenav.close()">
+                    <!-- OPEN Items to show only when the user is logged in -->
+                    <div *ngIf="authService.isLoggedIn()">
+                        <a mat-list-item routerLink="/home"> Home </a>
+                        <a mat-list-item routerLink="/dashboard"> Dashboard 1 </a>
+                        <a mat-list-item routerLink="/maps"> Dashboard 2 </a>
+                        <a mat-list-item routerLink="/profile"> Profile </a>
+                        <a mat-list-item routerLink="/register"> Register </a>
+                        <a mat-list-item routerLink="/login" (click)="logout()"> Logout </a>
+                    </div>
+                    <!-- CLOSE Items to show only when the user is logged in -->
 
-            <mat-list-item> <button mat-button color="primary" routerLink="/">Home</button> </mat-list-item>
-            <mat-list-item> <button mat-button color="primary" routerLink="/dashboard">Dashboard</button> </mat-list-item>
-            <mat-list-item> <button mat-button color="primary" routerLink="/profile">Profile</button></mat-list-item>
-            <!-- <mat-list-item *ngIf="afAuth.authState | async as user; else showLogin"> <button mat-button color="primary" routerLink="/register">Register</button> </mat-list-item> -->
+                    <!-- OPEN Items to show when the user is logged out -->
+                    <div *ngIf="!authService.isLoggedIn()">
+                        <a mat-list-item routerLink="/login"> Login </a>
+                    </div>
+                    <!-- CLOSE Items to show when the user is logged out -->
 
-
-            <mat-list-item> <button mat-button color="primary" routerLink="/login">Login</button> </mat-list-item>
-            <!-- <mat-list-item> <button mat-button color="primary" (click)="logout()" routerLink="/login">Logout</button> </mat-list-item> -->
-
-
-
+                </div>
+                <!-- CLOSE Close SideNav after link selection-->
+            </mat-nav-list>
         </mat-list>
 
         <!-- sidenav contents -->
 
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar color="primary">
+
+        <!-- App title bar -->
+        <mat-toolbar class="mat-elevation-z6" color="primary">
             <mat-toolbar-row>
 
-                <div class="toggle-btn" (click)="sidenav.toggle()">
+                <!-- 3 lines created using span tag for hamburger  -->
+
+                <div class="hamburger-btn" (click)="sidenav.toggle()">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
 
-                <span class="example-spacer"></span>
+                <span class="spacer"></span>
                 <span>Apne Truck</span>
-
-                <span class="example-spacer"></span>
-
-
+                <span class="spacer"></span>
             </mat-toolbar-row>
         </mat-toolbar>
+        <br><br>
 
-        <div class="container">
-            <router-outlet></router-outlet>
-        </div>
+        <!-- <div class="container"> -->
+        <ng-content></ng-content>
+
+
+        <!-- </div> -->
 
     </mat-sidenav-content>
 

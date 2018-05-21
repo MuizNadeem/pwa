@@ -1,14 +1,25 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule,
     MatCheckboxModule,
      MatSidenavModule,
-     MatToolbarModule
+     MatToolbarModule,
+     
+     MatInputModule
  } from '@angular/material';
  import {MatListModule} from '@angular/material/list';
  import {MatIconModule} from '@angular/material/icon'
+ import {MatCardModule} from '@angular/material/card';
+ import {MatStepperModule} from '@angular/material/stepper';
+ import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+ const modules = [ MatInputModule, MatFormFieldModule, MatStepperModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule,MatToolbarModule, MatCheckboxModule,MatListModule]
+
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule,MatToolbarModule, MatCheckboxModule,MatListModule],
-  exports: [MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule,MatToolbarModule, MatCheckboxModule,MatListModule],
+  imports : [modules],
+  exports: [modules],
+  providers: [MediaMatcher]
 })
 export class MaterialModule { }

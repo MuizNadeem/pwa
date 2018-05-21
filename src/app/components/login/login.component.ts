@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.afAuth.authState.subscribe(d => console.log(d));
+    // this.afAuth.authState.subscribe(d => console.log(d));
   }
 
   logout() {

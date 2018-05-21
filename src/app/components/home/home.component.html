@@ -1,18 +1,41 @@
+<br>
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotrons">
+        <mat-card style="width:100%">
+            <div>
 
-        <div *ngIf="authService.isLoggedIn()">
+                <h5>Welcome to APNE TRUCK</h5>
+                <h6>You should see this only if you are logged in!</h6>
 
-            <h2>Hi {{authService.data.displayName}}, Welcome to APNE TRUCK</h2>
-            You should see this only if you are logged in!
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <div>
 
-            <a class="btn btn-lg btn-primary" href="" role="button" (click)="authService.logout()">Logout</a>
-        </div>
+                <h5>Dashboard</h5>
+                <h6>Shows you the map</h6>
 
-        <!-- <p *ngIf="!authService.isLoggedIn()">
+            </div>
+        </mat-card>
+        <!-- <br>
+        <mat-card>
+            <div>
 
-            <a class="btn btn-lg btn-primary" href="" role="button" (click)="authService.logout()">Login</a>
-        </p> -->
+                <h5>Welcome to APNE TRUCK</h5>
+                <h6>You should see this only if you are logged in!</h6>
+
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <div>
+
+                <h5>Welcome to APNE TRUCK</h5>
+                <h6>You should see this only if you are logged in!</h6>
+
+            </div>
+        </mat-card> -->
 
     </div>
 </div>

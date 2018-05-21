@@ -1,20 +1,8 @@
-.example-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.example-icon {
-    padding: 0 14px;
-}
-
-.example-spacer {
+.spacer {
     flex: 1 1 auto;
 }
 
-.toggle-btn span {
+.hamburger-btn span {
     display: block;
     width: 23px;
     height: 2px;
@@ -22,6 +10,32 @@
     margin: 5px 0px;
 }
 
-mat-list mat-list-item {
+.sidenav {
+    width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+    .sidenav {
+        width: 60%;
+    }
+}
+
+mat-list mat-nav-list {
     padding: 20px;
+    padding-top: 0px;
+    text-align: center;
+}
+
+#closebtn {
+    font-size: 36px;
+    width: 50px;
+}
+
+mat-sidenav-content {
+    min-height: 100vh;
+}
+
+mat-toolbar {
+    position: fixed;
+    z-index: 1;
 }
