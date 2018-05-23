@@ -1,9 +1,11 @@
+import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
-import { User } from '@firebase/auth-types';
+import { first, tap } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import {
   AuthMethods,
   AuthProvider,
@@ -12,29 +14,71 @@ import {
   FirebaseUIAuthConfig,
   FirebaseUIModule
 } from 'firebaseui-angular';
+
 @Injectable()
 export class AuthService {
 
+  user: Observable<User>;
 
-  
-  data: Object = null;
-  private user: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
-  constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = _firebaseAuth.authState;
-    this.user.subscribe(
+  //data: Object = null;
+  private firebaseUser: Observable<firebase.User>;
+  public userDetails: firebase.User = null;
+  constructor(private _firebaseAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
+    
+    //break fix 
+    afs.firestore.settings({ timestampsInSnapshots: true });
+
+    this.user = this._firebaseAuth.authState
+    .switchMap(user => {
+      if (user) {
+        // logged in, get custom user from Firestore
+        return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+      } else {
+        // logged out, null
+        return Observable.of(null)
+      }
+    })
+
+
+    this.firebaseUser = _firebaseAuth.authState;
+    this.firebaseUser.subscribe(
       (user) => {
         if (user) {
           this.userDetails = user;
-          this.data = user;
-          //this.router.navigate(['/home'])
-          console.log(this.userDetails);
+          // console.log(this.userDetails)
+          this.findOrCreate(`users/${user.uid}`, user)
         }
         else {
           this.userDetails = null;
         }
       }
     );
+  }
+
+  async findOrCreate(path: string, user: any) {
+
+    const doc = await this.docExists(path);
+    const data: User = {
+      uid: user.uid,
+      phone: user.phoneNumber,
+      name: user.displayName || null,
+      role: "newUser"
+    }
+
+    if (doc) {
+      return 'doc exists'
+    } else {
+      await this.afs.doc(path).set(data)
+      return 'created new doc'
+    }
+  }
+
+  docExists(path: string) {
+    return this.afs.doc(path).valueChanges().pipe(first()).toPromise()
+  }
+
+  updateUser(user: User, data: any) {
+    return this.afs.doc(`users/${user.uid}`).update(data)
   }
 
   isLoggedIn() {
@@ -51,14 +95,14 @@ export class AuthService {
       .then((res) => this.router.navigate(['/login']));
   }
 
-  
+
 
 }
 
 const PhoneCustomConfig: AuthProviderWithCustomConfig = {
   provider: AuthProvider.Phone,
   customConfig: {
-    
+
     defaultCountry: 'IN',
     recaptchaParameters: {
       type: 'image', // 'audio'

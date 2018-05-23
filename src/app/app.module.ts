@@ -24,7 +24,10 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FirebaseUIModule } from 'firebaseui-angular';
 import { FormsModule,FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -58,6 +61,7 @@ import { DirectionsMapDirective } from './map/google-map.directive';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     FirebaseUIModule.forRoot(AuthConfig),
     AgmCoreModule.forRoot({ // @agm/core
       apiKey: 'AIzaSyDsLcRnpyPrKMyEDk66ZvEHmy3YaUA2n_4',

@@ -30,7 +30,7 @@
         "bootstrap": "^4.1.0",
         "chart.js": "^2.5.0",
         "core-js": "^2.4.1",
-        "firebase": "^4.13.1",
+        "firebase": "^4.4.0",
         "firebaseui": "^2.7.0",
         "firebaseui-angular": "^2.6.2",
         "font-awesome": "^4.7.0",

@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -9,19 +10,23 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  detailForm: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+
+    this.detailForm = this.fb.group({
+      'catchPhrase': ['', [ Validators.required ] ]
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    
   }
+  get catchPhrase() { return this.detailForm.get('catchPhrase') }
+
+
+  setCatchPhrase(user) {
+    return this.auth.updateUser(user, { name:  this.catchPhrase.value })
+  }
+    
 
 }
