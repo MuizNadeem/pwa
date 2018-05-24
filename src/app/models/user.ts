@@ -2,6 +2,8 @@ export interface User {
     uid: string;
     phone: string;
     
-    name?: string;
+    firstName?: string;
+    lastName?: string;
     role?: string;
+    email?: string;
   }

@@ -1,15 +1,8 @@
 <mat-card>
     <ng-container *ngIf="(auth.user | async) || {} as user">
-        <form [formGroup]="detailForm" *ngIf="user.uid" (ngSubmit)="setCatchPhrase(user)">
 
-            <h3>Update your name</h3>
-
-            <label for="catchPhrase">Name</label>
-            <input matInput type="test" formControlName="catchPhrase"> {{user.name}}
-            <button mat-button type="submit" [disabled]="!detailForm.valid">Submit</button>
-
-
-        </form>
+        Hi {{user.firstName}} {{user.lastName}}
+        <br> Your Registered mobile number is {{user.phone}}
     </ng-container>
 
     <!-- <mat-vertical-stepper [linear]="true" #stepper>

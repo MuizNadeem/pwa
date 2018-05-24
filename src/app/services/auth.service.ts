@@ -27,6 +27,7 @@ export class AuthService {
     
     //break fix 
     afs.firestore.settings({ timestampsInSnapshots: true });
+    afs.firestore.enablePersistence();
 
     this.user = this._firebaseAuth.authState
     .switchMap(user => {
@@ -45,7 +46,7 @@ export class AuthService {
       (user) => {
         if (user) {
           this.userDetails = user;
-          // console.log(this.userDetails)
+         
           this.findOrCreate(`users/${user.uid}`, user)
         }
         else {
@@ -61,8 +62,10 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       phone: user.phoneNumber,
-      name: user.displayName || null,
-      role: "newUser"
+      firstName: "",
+      lastName: "",
+      role: "",
+      email : ""
     }
 
     if (doc) {

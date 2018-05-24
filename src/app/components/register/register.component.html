@@ -1,13 +1,68 @@
 <mat-card>
-    <div class="text-center">
-        <h2 class="jumbotron">Register Trucks</h2>
-    </div>
-    <div class="row">
-        <div class="col-md-7">
-            <app-truck></app-truck>
-        </div>
-        <div class="col-md-5">
-            <app-truck-list></app-truck-list>
-        </div>
-    </div>
+    <ng-container *ngIf="(auth.user | async) || {} as user">
+        <form [formGroup]="detailForm" *ngIf="user.uid" (ngSubmit)="detailFormSubmit(user)">
+
+            <h3>Update your name</h3>
+
+            <mat-form-field>
+                <input matInput type="text" formControlName="firstName" placeholder="
+                First Name">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="text" formControlName="lastName" placeholder="
+                Last Name">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+                <input matInput type="email" formControlName="email" placeholder="Email Address">
+            </mat-form-field>
+            <br>
+
+            <mat-radio-group formControlName="role">
+                <mat-radio-button value="booker">Truck Booker</mat-radio-button>
+                <br>
+                <mat-radio-button value="owner">Truck Owner</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!detailForm.valid">Submit</button>
+        </form>
+
+    </ng-container>
+
+    <!-- <mat-vertical-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Fill out your name</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper> -->
+
 </mat-card>

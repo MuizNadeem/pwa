@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -12,21 +12,51 @@ export class ProfileComponent implements OnInit {
 
   detailForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public auth: AuthService) { }
+  constructor(private fb: FormBuilder, public auth: AuthService, public snackBar: MatSnackBar) { }
+  
+  openSnackBar() {
+    this.snackBar.open("Details Submited", "OK", {
+      duration: 2000,
+    });
+  }
 
   ngOnInit() {
 
     this.detailForm = this.fb.group({
-      'catchPhrase': ['', [ Validators.required ] ]
+      'firstName': ['', [ Validators.required ] ],
+      'lastName': ['', [ Validators.required ] ],
+      'role': ['', [ Validators.required ] ],
+      'email': ['', [ Validators.email] ]
     });
     
   }
-  get catchPhrase() { return this.detailForm.get('catchPhrase') }
+  get firstName() { return this.detailForm.get('firstName') }
+  get lastName() { return this.detailForm.get('lastName') }
+  get role() { return this.detailForm.get('role') }
+  get email() { return this.detailForm.get('email') }
+  
+  detailFormSubmit(user) {
+  
+    let submitStatus = this.auth.updateUser(user, { firstName:  this.firstName.value,
+      lastName:  this.lastName.value,
+      role: this.role.value,
+      email: this.email.value
+
+     })
 
 
-  setCatchPhrase(user) {
-    return this.auth.updateUser(user, { name:  this.catchPhrase.value })
+
+     // TODO: add logic to display snakbar based on submitStatus 
+
+     this.snackBar.open("Details Submited", "OK", {
+      duration: 2000,
+    })
+
+    
+     
   }
+
+ 
     
 
 }
