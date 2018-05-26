@@ -1,3 +1,4 @@
+import { PersistanceService } from './persistance.service';
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
@@ -23,7 +24,7 @@ export class AuthService {
   //data: Object = null;
   private firebaseUser: Observable<firebase.User>;
   public userDetails: firebase.User = null;
-  constructor(private _firebaseAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
+  constructor(private persister: PersistanceService, private _firebaseAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
     
     //break fix 
     afs.firestore.settings({ timestampsInSnapshots: true });
@@ -32,6 +33,7 @@ export class AuthService {
     this.user = this._firebaseAuth.authState
     .switchMap(user => {
       if (user) {
+        
         // logged in, get custom user from Firestore
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
       } else {
@@ -45,12 +47,14 @@ export class AuthService {
     this.firebaseUser.subscribe(
       (user) => {
         if (user) {
+         
           this.userDetails = user;
          
           this.findOrCreate(`users/${user.uid}`, user)
         }
         else {
           this.userDetails = null;
+         
         }
       }
     );
@@ -84,8 +88,10 @@ export class AuthService {
     return this.afs.doc(`users/${user.uid}`).update(data)
   }
 
-  isLoggedIn() {
-    if (this.userDetails == null) {
+
+   isLoggedIn() { 
+    let loggedIn = this.persister.get("loggedIn");
+    if (this.userDetails == null && loggedIn == null ) {    
       return false;
     } else {
       return true;
@@ -94,6 +100,7 @@ export class AuthService {
 
   logout() {
     this.userDetails = null;
+    this.persister.set("loggedIn",null);
     this._firebaseAuth.auth.signOut()
       .then((res) => this.router.navigate(['/login']));
   }

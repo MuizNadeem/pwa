@@ -3,7 +3,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { ROUTES } from './app.routes';
 import { AuthService , AuthConfig } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { RegisterComponent } from './components/register/register.component';
-import { TruckComponent } from './components/register/truck/truck.component';
-import { TruckListComponent } from './components/register/truck-list/truck-list.component';
+
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -34,6 +33,7 @@ import { FormsModule,FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { AgmCoreModule } from '@agm/core';
 import { DirectionsMapDirective } from './map/google-map.directive';
+import { PersistanceService } from './services/persistance.service';
 
 
 @NgModule({
@@ -45,8 +45,6 @@ import { DirectionsMapDirective } from './map/google-map.directive';
     DashboardComponent,
     ProfileComponent,
     HomeComponent,
-    TruckComponent,
-    TruckListComponent,
     DirectionsMapDirective,
     MapsComponent
   ],
@@ -69,7 +67,7 @@ import { DirectionsMapDirective } from './map/google-map.directive';
     })
 
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, PersistanceService],
 
   bootstrap: [AppComponent]
 })

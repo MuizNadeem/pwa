@@ -2,7 +2,7 @@
     <ng-container *ngIf="(auth.user | async) || {} as user">
         <form [formGroup]="detailForm" *ngIf="user.uid" (ngSubmit)="detailFormSubmit(user)">
 
-            <h3>Update your name</h3>
+            <h3>Enter your details</h3>
 
             <mat-form-field>
                 <input matInput type="text" formControlName="firstName" placeholder="
@@ -27,6 +27,7 @@
             </mat-radio-group>
             <br>
             <button mat-raised-button color="primary" type="submit" [disabled]="!detailForm.valid">Submit</button>
+
         </form>
 
     </ng-container>

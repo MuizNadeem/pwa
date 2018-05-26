@@ -1,3 +1,4 @@
+import { PersistanceService } from './../../services/persistance.service';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
@@ -14,18 +15,15 @@ import {FirebaseUISignInSuccess} from 'firebaseui-angular';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private persister: PersistanceService, private router: Router, private afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    // this.afAuth.authState.subscribe(d => console.log(d));
-  }
-
-  logout() {
-    this.afAuth.auth.signOut();
+    
   }
 
   successCallback(data: FirebaseUISignInSuccess) {
-    console.log('successCallback', data);
+    this.persister.set("loggedIn","true");
+    this.router.navigate(['/home']);
   }
 
 }

@@ -4,24 +4,40 @@
         <mat-list>
             <mat-nav-list>
                 <!-- Close SideNav on button click-->
-                <a (click)="sidenav.close()" id="closebtn" mat-list-item><span>&times;</span></a>
+                <!-- <a (click)="sidenav.close()" id="closebtns" mat-list-item><span>&times;</span></a> -->
+
+                <a (click)="sidenav.close()" id="closebtns" mat-list-item><i class="fa fa-times" aria-hidden="true"></i></a>
+
+
 
                 <!-- Close SideNav after link selection-->
                 <div (click)="sidenav.close()">
                     <!-- OPEN Items to show only when the user is logged in -->
                     <div *ngIf="authService.isLoggedIn()">
-                        <a mat-list-item routerLink="/home"> Home </a>
-                        <a mat-list-item routerLink="/dashboard"> Dashboard 1 </a>
-                        <a mat-list-item routerLink="/maps"> Dashboard 2 </a>
-                        <a mat-list-item routerLink="/profile"> Profile </a>
-                        <a mat-list-item routerLink="/register"> Register </a>
-                        <a mat-list-item routerLink="/login" (click)="logout()"> Logout </a>
+                        <a mat-list-item routerLink="/home">
+                            <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Home
+                        </a>
+                        <a mat-list-item routerLink="/dashboard">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp; Dashboard 1
+                        </a>
+                        <a mat-list-item routerLink="/maps">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp; Dashboard 2
+                        </a>
+                        <a mat-list-item routerLink="/profile">
+                            <i class="fa fa-user" aria-hidden="true"></i>&nbsp; Profile
+                        </a>
+                        <a mat-list-item routerLink="/register">
+                            <i class="fa fa-address-card" aria-hidden="true"></i>&nbsp; Register
+                        </a>
+                        <a mat-list-item routerLink="/login" (click)="logout()">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout
+                        </a>
                     </div>
                     <!-- CLOSE Items to show only when the user is logged in -->
 
                     <!-- OPEN Items to show when the user is logged out -->
                     <div *ngIf="!authService.isLoggedIn()">
-                        <a mat-list-item routerLink="/login"> Login </a>
+                        <a mat-list-item routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Login </a>
                     </div>
                     <!-- CLOSE Items to show when the user is logged out -->
 
@@ -40,12 +56,12 @@
             <mat-toolbar-row>
 
                 <!-- 3 lines created using span tag for hamburger  -->
-
-                <div class="hamburger-btn" (click)="sidenav.toggle()">
+                <i class="fa fa-bars" aria-hidden="true" (click)="sidenav.toggle()"></i>
+                <!-- <div class="hamburger-btn" (click)="sidenav.toggle()">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </div> -->
 
                 <span class="spacer"></span>
                 <span>Apne Truck</span>
