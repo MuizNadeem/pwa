@@ -27,13 +27,12 @@ export class AuthService {
   constructor(private persister: PersistanceService, private _firebaseAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
     
     //break fix 
-    afs.firestore.settings({ timestampsInSnapshots: true });
+    afs.firestore.settings( { timestampsInSnapshots: true } );
     afs.firestore.enablePersistence();
 
     this.user = this._firebaseAuth.authState
     .switchMap(user => {
-      if (user) {
-        
+      if (user) {  
         // logged in, get custom user from Firestore
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
       } else {
@@ -104,9 +103,7 @@ export class AuthService {
     this._firebaseAuth.auth.signOut()
       .then((res) => this.router.navigate(['/login']));
   }
-
-
-
+  
 }
 
 const PhoneCustomConfig: AuthProviderWithCustomConfig = {
@@ -132,8 +129,7 @@ export const AuthConfig: FirebaseUIAuthConfig = {
     //AuthProvider.Password,
     //AuthProvider.Phone,
   ],
-  method: AuthMethods.Popup
-  ,
+  method: AuthMethods.Popup,
   tos: '<your-tos-link>',
   credentialHelper: CredentialHelper.None,
  // signInSuccessUrl: "http://localhost:4200"
