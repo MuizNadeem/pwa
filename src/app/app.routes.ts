@@ -1,4 +1,3 @@
-import { MapsComponent } from './components/maps/maps.component';
 import { Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
@@ -13,7 +12,6 @@ import{ AuthGuard} from './services/auth-guard.service';
 export const ROUTES: Routes = [
         { path:'' ,canActivate: [AuthGuard], component: HomeComponent },
         { path:'home' , canActivate: [AuthGuard], component: HomeComponent },
-        { path:'maps' ,canActivate: [AuthGuard], component: MapsComponent },
         { path:'register' , canActivate: [AuthGuard] , component: RegisterComponent },
         { path:'login' , component: LoginComponent },
         { path:'profile' , canActivate: [AuthGuard], component: ProfileComponent },

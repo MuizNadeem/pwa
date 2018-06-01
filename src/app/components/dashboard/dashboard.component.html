@@ -1,9 +1,19 @@
-<agm-map style="height:90vh" [zoom]='12' [latitude]="lat" [longitude]="lng">
-
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<br>
+<br>
 <div id="mapInput" class="form-group">
-
-    <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search>
-    <button (click)="locateMe()">Locate Me</button>
+    <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl]="destinationInput">
+    <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl]="destinationOutput">
 </div>
+<agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
+
+    <agm-marker [latitude]="latitude" [longitude]="longitude">
+
+    </agm-marker>
+
+    <!-- <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+                <sebm-google-map-info-window>
+                    <strong>InfoWindow content</strong>
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker> -->
+    <map-directions [origin]="origin" [destination]="destination"></map-directions>
+</agm-map>

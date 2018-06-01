@@ -42,7 +42,7 @@ export class DirectionsMapDirective {
               directionsService.route({
                       origin: {placeId : this.originPlaceId },
                       destination: {placeId : this.destinationPlaceId },
-                      avoidHighways: true,
+                      avoidHighways: false,
                       travelMode: google.maps.DirectionsTravelMode.DRIVING
                       //travelMode: 'DRIVING'
                     }, function(response: any, status: any) {

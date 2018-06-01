@@ -1,4 +1,3 @@
-import { MapsComponent } from './components/maps/maps.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ROUTES } from './app.routes';
 import { AuthService , AuthConfig } from './services/auth.service';
@@ -45,8 +44,7 @@ import { PersistanceService } from './services/persistance.service';
     DashboardComponent,
     ProfileComponent,
     HomeComponent,
-    DirectionsMapDirective,
-    MapsComponent
+    DirectionsMapDirective
   ],
   imports: [
     BrowserModule,

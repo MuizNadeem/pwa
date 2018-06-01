@@ -1,3 +1,7 @@
+agm-map {
+    height: 90vh;
+}
+
 #mapInput {
     position: fixed;
     top: 10vh;

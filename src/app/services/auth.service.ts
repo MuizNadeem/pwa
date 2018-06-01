@@ -125,14 +125,16 @@ const PhoneCustomConfig: AuthProviderWithCustomConfig = {
 export const AuthConfig: FirebaseUIAuthConfig = {
   providers: [
     PhoneCustomConfig,
-    //AuthProvider.Google,
+    // AuthProvider.Google,
     // facebookCustomConfig,
     // AuthProvider.Twitter,
     // AuthProvider.Github,
-    // AuthProvider.Password,
+    //AuthProvider.Password,
     //AuthProvider.Phone,
   ],
-  method: AuthMethods.Popup,
+  method: AuthMethods.Popup
+  ,
   tos: '<your-tos-link>',
-  credentialHelper: CredentialHelper.AccountChooser
+  credentialHelper: CredentialHelper.None,
+ // signInSuccessUrl: "http://localhost:4200"
 }
