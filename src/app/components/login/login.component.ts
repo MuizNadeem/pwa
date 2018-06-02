@@ -15,10 +15,11 @@ import {FirebaseUISignInSuccess} from 'firebaseui-angular';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private persister: PersistanceService, private router: Router, private afAuth: AngularFireAuth) { }
+  constructor(private persister: PersistanceService, private router: Router, private afAuth: AngularFireAuth, private authService: AuthService) { }
 
   ngOnInit(): void {
-    
+    if(this.authService.isLoggedIn())
+    this.router.navigate(['/home']);
   }
 
   successCallback(data: FirebaseUISignInSuccess) {
