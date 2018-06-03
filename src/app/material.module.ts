@@ -14,9 +14,10 @@ import { MatButtonModule,
  import {MatStepperModule} from '@angular/material/stepper';
  import {MatFormFieldModule} from '@angular/material/form-field';
  import {MatRadioModule} from '@angular/material/radio';
- import {MatSnackBarModule} from '@angular/material/snack-bar'
+ import {MatSnackBarModule} from '@angular/material/snack-bar';
+ import {MatTabsModule} from '@angular/material/tabs';
  
- const modules = [ MatSnackBarModule, MatRadioModule, MatInputModule, MatFormFieldModule, MatStepperModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule,MatToolbarModule, MatCheckboxModule,MatListModule]
+ const modules = [ MatTabsModule, MatSnackBarModule, MatRadioModule, MatInputModule, MatFormFieldModule, MatStepperModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatSidenavModule,MatToolbarModule, MatCheckboxModule,MatListModule]
 
 @NgModule({
   imports : [modules],

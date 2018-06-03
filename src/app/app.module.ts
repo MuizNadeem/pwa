@@ -1,3 +1,7 @@
+import { MyTrucksComponent } from './components/owner/my-trucks/my-trucks.component';
+import { ClosedOrdersComponent } from './components/owner/orders/closed-orders/closed-orders.component';
+import { OpenOrdersComponent } from './components/owner/orders/open-orders/open-orders.component';
+import { OrdersComponent } from './components/owner/orders/orders.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ROUTES } from './app.routes';
 import { AuthService , AuthConfig } from './services/auth.service';
@@ -44,7 +48,11 @@ import { PersistanceService } from './services/persistance.service';
     DashboardComponent,
     ProfileComponent,
     HomeComponent,
-    DirectionsMapDirective
+    DirectionsMapDirective,
+    OrdersComponent,
+    OpenOrdersComponent,
+    ClosedOrdersComponent,
+    MyTrucksComponent
   ],
   imports: [
     BrowserModule,

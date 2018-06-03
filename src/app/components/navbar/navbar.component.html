@@ -13,10 +13,12 @@
                 <!-- Close SideNav after link selection-->
                 <div (click)="sidenav.close()">
                     <!-- OPEN Items to show only when the user is logged in -->
+                    <a mat-list-item routerLink="/home">
+                        <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Home
+                    </a>
+
                     <div *ngIf="authService.isLoggedIn()">
-                        <a mat-list-item routerLink="/home">
-                            <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Home
-                        </a>
+
                         <a mat-list-item routerLink="/dashboard">
                             <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp; Dashboard
                         </a>
@@ -26,6 +28,24 @@
                         <a mat-list-item routerLink="/register">
                             <i class="fa fa-address-card" aria-hidden="true"></i>&nbsp; Register
                         </a>
+
+                        <!-- if user is truck owner  -->
+
+                        <ng-container *ngIf="(authService.user | async) || {} as user">
+
+                            <div *ngIf="user.role === 'owner'">
+                                <a mat-list-item routerLink="/orders">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; Orders
+                                </a>
+                                <a mat-list-item routerLink="/myTrucks">
+                                    <i class="fa fa-truck" aria-hidden="true"></i>&nbsp; My Trucks
+                                </a>
+                            </div>
+
+
+                        </ng-container>
+
+
                         <a mat-list-item routerLink="/login" (click)="logout()">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout
                         </a>
@@ -65,7 +85,7 @@
                 <span class="spacer"></span>
             </mat-toolbar-row>
         </mat-toolbar>
-        <br><br>
+
 
         <!-- <div class="container"> -->
         <ng-content></ng-content>

@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.authService.isLoggedIn())
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 
   successCallback(data: FirebaseUISignInSuccess) {
     this.persister.set("loggedIn","true");
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 
 }

@@ -20,7 +20,7 @@ import {
 export class AuthService {
 
   user: Observable<User>;
-
+ 
   //data: Object = null;
   private firebaseUser: Observable<firebase.User>;
   public userDetails: firebase.User = null;

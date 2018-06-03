@@ -1,44 +1,19 @@
+<br><br><br>
 <mat-card>
     <ng-container *ngIf="(auth.user | async) || {} as user">
 
-        Hi {{user.firstName}} {{user.lastName}}
-        <br> Your Registered mobile number is {{user.phone}}
+        <h5>Hi
+            <strong>
+                {{user.firstName}} 
+            </strong>
+        </h5>
+
+        <h6>Your Registered mobile number is <strong>{{user.phone}}</strong>
+        </h6>
+        <h6>
+            Your role is <strong>{{user.role}}</strong>
+        </h6>
 
 
     </ng-container>
-
-    <!-- <mat-vertical-stepper [linear]="true" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name</ng-template>
-                <mat-form-field>
-                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field>
-                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            You are now done.
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-            </div>
-        </mat-step>
-    </mat-vertical-stepper> -->
-
 </mat-card>
