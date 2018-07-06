@@ -24,9 +24,7 @@ export const ROUTES: Routes = [
         { path:'orders',  component: OrdersComponent },
         { path:'orders/open',  component: OpenOrdersComponent },
         { path:'orders/closed',  component: ClosedOrdersComponent },
-        { path:'myTrucks',  component: MyTrucksComponent }
-        
-      
+        { path:'myTrucks',  component: MyTrucksComponent }    
       ] ;
   
   

@@ -38,6 +38,18 @@ import { AgmCoreModule } from '@agm/core';
 import { DirectionsMapDirective } from './map/google-map.directive';
 import { PersistanceService } from './services/persistance.service';
 
+// Sentry
+import * as Raven from 'raven-js';
+import { ErrorHandler } from '@angular/core';
+Raven
+  .config('https://304bfb4df2344d04a2d4d1801ab2630b@sentry.io/1222601').install
+export class RavenErrorHandler implements ErrorHandler {
+  handleError(err:any) : void {
+    Raven.captureException(err);
+  }
+}
+
+
 
 @NgModule({
   declarations: [
@@ -73,7 +85,9 @@ import { PersistanceService } from './services/persistance.service';
     })
 
   ],
-  providers: [AuthService, AuthGuard, PersistanceService],
+  providers: [AuthService, AuthGuard, PersistanceService, 
+    { provide: ErrorHandler, useClass: RavenErrorHandler }
+  ],
 
   bootstrap: [AppComponent]
 })
