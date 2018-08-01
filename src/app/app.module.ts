@@ -1,3 +1,4 @@
+import { ApiModule } from './Tracking/api.module';
 import { MyTrucksComponent } from './components/owner/my-trucks/my-trucks.component';
 import { ClosedOrdersComponent } from './components/owner/orders/closed-orders/closed-orders.component';
 import { OpenOrdersComponent } from './components/owner/orders/open-orders/open-orders.component';
@@ -78,6 +79,7 @@ export class RavenErrorHandler implements ErrorHandler {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    ApiModule,
     FirebaseUIModule.forRoot(AuthConfig),
     AgmCoreModule.forRoot({ // @agm/core
       apiKey: 'AIzaSyDsLcRnpyPrKMyEDk66ZvEHmy3YaUA2n_4',
