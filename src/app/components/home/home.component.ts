@@ -1,7 +1,4 @@
-import { Device } from './../../Tracking/model/device';
-
-import { DefaultService } from './../../Tracking/api/default.service';
-// import * as API from './../../Tracking/api/api';
+import { TrackingService } from './../../Tracking/api/tracking.service';
 
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,15 +14,21 @@ import {MatButtonModule} from '@angular/material/button';
 export class HomeComponent implements OnInit {
 
   constructor( public authService: AuthService, private router: Router
-     ,public track: DefaultService
+     ,public track: TrackingService
   ) { }
   ngOnInit() {
     
-console.log("hello");
+ this.track.positionsGet()
+ .subscribe(truck=>{
+  console.log(truck[0]);
+});
 
- this.track.devicesGet().subscribe(truck=>{
-   console.log(truck);
+ this.track.devicesGet()
+ .subscribe(truck=>{
+   console.log(truck[0].name);
  });
+
+
 
   }
 

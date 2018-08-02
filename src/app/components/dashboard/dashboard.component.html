@@ -6,12 +6,18 @@
 
     <agm-marker [latitude]="latitude" [longitude]="longitude">
 
+        <agm-info-window>
+            <strong>Your Location</strong>
+        </agm-info-window>
+
     </agm-marker>
 
-    <!-- <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
-                <sebm-google-map-info-window>
-                    <strong>InfoWindow content</strong>
-                </sebm-google-map-info-window>
-            </sebm-google-map-marker> -->
+    <agm-marker [latitude]="latitudeT" [longitude]="longitudeT">
+        <agm-info-window>
+            <strong>{{name}}</strong>
+        </agm-info-window>
+
+    </agm-marker>
+
     <map-directions [origin]="origin" [destination]="destination"></map-directions>
 </agm-map>

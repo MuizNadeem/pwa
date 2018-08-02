@@ -4,14 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 // import {ERRORUNKNOWN} from './model/eRRORUNKNOWN'
 
-import { DefaultService } from './api/default.service';
+import { TrackingService } from './api/tracking.service';
 
 @NgModule({
   imports:      [ CommonModule, HttpClientModule ],
   declarations: [],
   exports:      [],
   providers: [
-    DefaultService ]
+    TrackingService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {

@@ -1,3 +1,4 @@
+
 import { DirectionsMapDirective } from './../../map/google-map.directive';
 
 import { Component, NgModule, NgZone, OnInit, ViewChild, ElementRef, Directive, Input  } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule, MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
 import {} from '@types/googlemaps';
+import { TrackingService } from '../../Tracking';
 
  
 declare var google:any;
@@ -18,8 +20,12 @@ declare var jQuery:any;
 })
 export class DashboardComponent implements OnInit {
 
+  public latitudeT: number;
+  public longitudeT: number;
+  public id: number;
+  public name : String;
 
-  public latitude: number;
+    public latitude: number;
     public longitude: number;
     public destinationInput: FormControl;
     public destinationOutput: FormControl;
@@ -46,11 +52,25 @@ export class DashboardComponent implements OnInit {
       private mapsAPILoader: MapsAPILoader,
       private ngZone: NgZone,
       private gmapsApi: GoogleMapsAPIWrapper,
-      private _elementRef : ElementRef
+      private _elementRef : ElementRef,
+      public track: TrackingService
     ) {
     }
 
     ngOnInit() {
+      //co ordinates from tracking api
+      this.track.positionsGet()
+      .subscribe( truck => {
+      this.latitudeT = truck[0].latitude ;
+      this.longitudeT = truck[0].longitude ;
+     this.id = truck[0].deviceId;
+    });
+    
+     this.track.devicesGet(false,0,this.id)
+     .subscribe( truck => {
+     this.name= truck[0].name;
+    });
+
       //set google maps defaults
       this.zoom = 8;
       this.latitude = 28.7041;
@@ -138,7 +158,7 @@ export class DashboardComponent implements OnInit {
         navigator.geolocation.getCurrentPosition((position) => {
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
-          this.zoom = 12;
+          // this.zoom = 12;
         });
       }
     }

@@ -1,3 +1,3 @@
-export * from './default.service';
-import { DefaultService } from './default.service';
-export const APIS = [DefaultService];
+export * from './tracking.service';
+import { TrackingService } from './tracking.service';
+export const APIS = [TrackingService];

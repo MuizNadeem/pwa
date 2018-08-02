@@ -1,4 +1,3 @@
-import { DefaultService } from './../../Tracking/api/default.service';
 
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,8 +15,6 @@ private role;
    }
   
   ngOnInit() { 
-     console.log("testing");
-    //  console.log(this.tracking.devicesGet);
    }
 
 
