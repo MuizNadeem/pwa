@@ -34,7 +34,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class TrackingService {
 
-    protected basePath = 'http://13.232.92.252:8082/api';
+    protected basePath = 'https://tracking.apnetruck.com/api';
     public defaultHeaders = new HttpHeaders();
 
     public configuration = new Configuration(

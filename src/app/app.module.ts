@@ -82,7 +82,7 @@ export class RavenErrorHandler implements ErrorHandler {
     ApiModule,
     FirebaseUIModule.forRoot(AuthConfig),
     AgmCoreModule.forRoot({ // @agm/core
-      apiKey: 'AIzaSyDsLcRnpyPrKMyEDk66ZvEHmy3YaUA2n_4',
+      apiKey: 'AIzaSyDsLcRnpyPrKMyEDk66ZvEHmy3YaUA2n_4T',
       libraries:["places", ]
     })
 
